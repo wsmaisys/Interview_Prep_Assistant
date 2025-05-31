@@ -211,15 +211,11 @@ def initialize_llm():
             2. Format: `MISTRALAI_API_KEY = "your-api-key-here"`
             """)
             st.stop()
-        
-        # Debug info for local testing (remove in production)
-        api_key_source = "Environment Variable (.env)" if os.getenv("MISTRALAI_API_KEY") else "Streamlit Secrets"
-        st.success(f"✅ **API Key Loaded** from: {api_key_source}")
-        
+            
         return ChatMistralAI(
             temperature=0.7, 
             model="mistral-small-latest",
-            api_key=mistral_api_key.strip()  # Changed from mistral_api_key parameter
+            api_key=mistral_api_key.strip()
         )
         
     except Exception as e:
@@ -270,9 +266,9 @@ except Exception as e:
     st.error(f"🚨 **Initialization Failed**: {str(e)}")
     st.stop()
 
-# Header section
-st.markdown("# 🎯 Interview Prep Assistant")
-st.markdown("### 💫 *Ace your next interview with confidence and preparation*")
+# Header section with centered text
+st.markdown("<h1 style='text-align: center;'>🎯 Interview Prep Assistant</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>💫 <i>Ace your next interview with confidence and preparation</i></h3>", unsafe_allow_html=True)
 st.markdown("---")
 
 # Create columns for better layout
@@ -469,7 +465,7 @@ with motivation_col3:
 # Footer
 st.markdown("""
 <div class="footer">
-    ❤️ Created by Waseem M Ansari, response served from Mistral AI 🤖
+    ❤️ Created by Waseem M Ansari, served by Mistral AI 🤖
 </div>
 """, unsafe_allow_html=True)
 
